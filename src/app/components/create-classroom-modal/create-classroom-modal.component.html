@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h4 class="modal-title">Nuova classe</h4>
+  <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="create()">
+  <div class="modal-body">
+    <div class="mb-3">
+      <label class="form-label">Nome della classe</label>
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Studenti</label>
+      @for (student of students$ | async; track student.id) {
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [id]="'student-' + student.id"
+            [checked]="isSelected(student.id)"
+            (change)="toggleStudent(student.id, $any($event.target).checked)">
+          <label class="form-check-label" [attr.for]="'student-' + student.id">
+            {{ student.fullName }}
+          </label>
+        </div>
+      } @empty {
+        <div class="text-muted">Nessuno studente registrato.</div>
+      }
+    </div>
+
+    <div class="text-danger">
+      {{ errorMessage() }}
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">Annulla</button>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Crea</button>
+  </div>
+</form>
