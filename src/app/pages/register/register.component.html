@@ -1,56 +1,61 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col col-lg-4"></div>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-6 col-xl-5">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4 p-md-5">
+          <h3 class="text-center mb-1">Crea il tuo account</h3>
+          <p class="text-muted text-center mb-4">Scegli se registrarti come studente o come docente</p>
 
-    <div class="col col-lg-4 col-md-12 border rounded p-4">
-      <form [formGroup]="registerForm" (ngSubmit)="register()">
-        <div class="form-outline mb-3">
-          <label class="form-label">Nome</label>
-          <input class="form-control" type="text" formControlName="firstName">
-        </div>
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="row g-3 mb-3">
+              <div class="col-sm-6">
+                <label class="form-label" for="firstName">Nome</label>
+                <input id="firstName" class="form-control" type="text" formControlName="firstName">
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="lastName">Cognome</label>
+                <input id="lastName" class="form-control" type="text" formControlName="lastName">
+              </div>
+            </div>
 
-        <div class="form-outline mb-3">
-          <label class="form-label">Cognome</label>
-          <input class="form-control" type="text" formControlName="lastName">
-        </div>
+            <div class="mb-3">
+              <label class="form-label" for="picture">URL immagine profilo</label>
+              <input id="picture" class="form-control" type="text" formControlName="picture">
+            </div>
 
-        <div class="form-outline mb-3">
-          <label class="form-label">URL immagine profilo</label>
-          <input class="form-control" type="text" formControlName="picture">
-        </div>
+            <div class="mb-3">
+              <label class="form-label" for="role">Ruolo</label>
+              <select id="role" class="form-select" formControlName="role">
+                <option value="student">Studente</option>
+                <option value="teacher">Docente</option>
+              </select>
+            </div>
 
-        <div class="form-outline mb-3">
-          <label class="form-label">Ruolo</label>
-          <select class="form-select" formControlName="role">
-            <option value="student">Studente</option>
-            <option value="teacher">Docente</option>
-          </select>
-        </div>
+            <div class="mb-3">
+              <label class="form-label" for="username">Username</label>
+              <input id="username" class="form-control" type="text" autocomplete="username" formControlName="username">
+            </div>
 
-        <div class="form-outline mb-3">
-          <label class="form-label">Username</label>
-          <input class="form-control" type="text" formControlName="username">
-        </div>
+            <div class="mb-4">
+              <label class="form-label" for="password">Password</label>
+              <input id="password" class="form-control" type="password" autocomplete="new-password" formControlName="password">
+            </div>
 
-        <div class="form-outline mb-4">
-          <label class="form-label">Password</label>
-          <input class="form-control" type="password" formControlName="password">
-        </div>
+            @if (errorMessage()) {
+              <div class="alert alert-danger py-2">{{ errorMessage() }}</div>
+            }
 
-        <div class="text-danger">
-          {{ errorMessage() }}
-        </div>
+            <button
+              [disabled]="registerForm.invalid"
+              type="submit"
+              class="btn btn-primary w-100 mb-4">Registrati</button>
 
-        <div class="text-center">
-          <button
-            [disabled]="registerForm.invalid"
-            type="submit"
-            class="btn btn-primary btn-block mb-4">Registrati</button>
+            <div class="text-center">
+              Hai già un account? <a routerLink="/login">Accedi</a>
+            </div>
+          </form>
         </div>
-        <div class="text-center">
-          Hai già un account? <a routerLink="/login">Accedi</a>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

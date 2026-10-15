@@ -1,37 +1,40 @@
 <div class="modal-header">
   <h4 class="modal-title">Nuova classe</h4>
-  <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
+  <button type="button" class="btn-close" aria-label="Chiudi" (click)="activeModal.dismiss()"></button>
 </div>
 
 <form [formGroup]="form" (ngSubmit)="create()">
   <div class="modal-body">
     <div class="mb-3">
-      <label class="form-label">Nome della classe</label>
-      <input class="form-control" type="text" formControlName="name">
+      <label class="form-label" for="classroom-name">Nome della classe</label>
+      <input id="classroom-name" class="form-control" type="text" formControlName="name">
     </div>
 
     <div class="mb-3">
       <label class="form-label">Studenti</label>
-      @for (student of students$ | async; track student.id) {
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            [id]="'student-' + student.id"
-            [checked]="isSelected(student.id)"
-            (change)="toggleStudent(student.id, $any($event.target).checked)">
-          <label class="form-check-label" [attr.for]="'student-' + student.id">
-            {{ student.fullName }}
-          </label>
-        </div>
-      } @empty {
-        <div class="text-muted">Nessuno studente registrato.</div>
-      }
+      <div class="border rounded p-2 overflow-y-auto" style="max-height: 14rem;">
+        @for (student of students$ | async; track student.id) {
+          <div class="form-check py-1">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [id]="'student-' + student.id"
+              [checked]="isSelected(student.id)"
+              (change)="toggleStudent(student.id, $any($event.target).checked)">
+            <label class="form-check-label" [attr.for]="'student-' + student.id">
+              {{ student.fullName }}
+            </label>
+          </div>
+        } @empty {
+          <div class="text-muted">Nessuno studente registrato.</div>
+        }
+      </div>
+      <div class="form-text">Gli studenti non potranno essere modificati dopo la creazione.</div>
     </div>
 
-    <div class="text-danger">
-      {{ errorMessage() }}
-    </div>
+    @if (errorMessage()) {
+      <div class="alert alert-danger py-2 mb-0">{{ errorMessage() }}</div>
+    }
   </div>
 
   <div class="modal-footer">

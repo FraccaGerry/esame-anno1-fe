@@ -1,1 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== Tema applicazione ===== */
+:root {
+  /* blu della navbar come colore principale di tutta l'app */
+  --bs-primary: #1e4f91;
+  --bs-primary-rgb: 30, 79, 145;
+  --bs-link-color: #1e4f91;
+  --bs-link-color-rgb: 30, 79, 145;
+  --bs-link-hover-color: #163b6e;
+  --bs-link-hover-color-rgb: 22, 59, 110;
+
+  /* sfondo grigio chiaro: le card bianche risaltano */
+  --bs-body-bg: #f4f6fa;
+  --bs-body-color: #1f2937;
+  --bs-border-color: #e3e7ee;
+
+  /* angoli più morbidi per bottoni, input, avvisi, menu */
+  --bs-border-radius: 0.5rem;
+  --bs-border-radius-lg: 0.75rem;
+}
+
+h1, h2, h3, h4, h5 { font-weight: 600; }
+h2 { margin-bottom: 1.25rem; }
+
+/* bottone principale con la stessa tinta, anche in hover */
+.btn-primary {
+  --bs-btn-bg: #1e4f91;
+  --bs-btn-border-color: #1e4f91;
+  --bs-btn-hover-bg: #163b6e;
+  --bs-btn-hover-border-color: #163b6e;
+  --bs-btn-active-bg: #163b6e;
+  --bs-btn-active-border-color: #163b6e;
+  --bs-btn-disabled-bg: #1e4f91;
+  --bs-btn-disabled-border-color: #1e4f91;
+}
+.btn { font-weight: 500; }
+.badge { font-weight: 500; }
+
+/* focus degli input in tinta con il tema (quello di default è azzurro Bootstrap) */
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: #6b93c9;
+  box-shadow: 0 0 0 0.25rem rgba(30, 79, 145, 0.18);
+}
+.form-check-input:checked {
+  background-color: #1e4f91;
+  border-color: #1e4f91;
+}
+
+/* liste: da tabella a elenco di card separate */
+.list-group { gap: 0.75rem; }
+.list-group > .list-group-item {
+  border-width: 1px;
+  border-radius: var(--bs-border-radius-lg);
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+  padding: 1rem 1.25rem;
+  transition: box-shadow 0.15s ease;
+}
+.list-group > .list-group-item-action:hover {
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.12);
+}
+
+/* modal e menu a tendina: niente bordi, ombra morbida */
+.modal-content {
+  border: 0;
+  box-shadow: 0 10px 40px rgba(16, 24, 40, 0.18);
+}
+.modal-header { border-bottom: 0; }
+.modal-footer { border-top: 0; }
+.dropdown-menu {
+  border: 0;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.15);
+}
+.alert { border: 0; }

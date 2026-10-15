@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Assignment } from '../entities';
+import { Assignment, StudentCompletion } from '../entities';
 
 export type CreateAssignmentData = {
   title: string;
@@ -10,6 +10,9 @@ export type CreateAssignmentData = {
   providedIn: 'root',
 })
 export class AssignmentService {
+  listStudents(classroomId: string, id: string) {
+    return this.http.get<StudentCompletion[]>(`/api/classrooms/${classroomId}/assignments/${id}/students`);
+  }
   private http = inject(HttpClient);
 
   list(classroomId: string) {

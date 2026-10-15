@@ -1,41 +1,47 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col col-lg-4"></div>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5 col-xl-4">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4 p-md-5">
+          <h3 class="text-center mb-1">Accedi</h3>
+          <p class="text-muted text-center mb-4">Entra nella tua area Classroom</p>
 
-    <div class="col col-lg-4 col-md-12 border rounded p-4">
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="form-outline mb-4">
-          <label class="form-label">Username</label>
-          <input
-            class="form-control"
-            type="text"
-            formControlName="username"
-            >
-        </div>
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="mb-3">
+              <label class="form-label" for="username">Username</label>
+              <input
+                id="username"
+                class="form-control"
+                type="text"
+                autocomplete="username"
+                formControlName="username">
+            </div>
 
-        <div class="form-outline mb-4">
-          <label class="form-label">Password</label>
-          <input
-            class="form-control"
-            type="password"
-            formControlName="password"
-            >
-        </div>
-        <div class="text-danger">
-          {{ errorMessage() }}
-        </div>
+            <div class="mb-4">
+              <label class="form-label" for="password">Password</label>
+              <input
+                id="password"
+                class="form-control"
+                type="password"
+                autocomplete="current-password"
+                formControlName="password">
+            </div>
 
-        <div class="text-center">
-          <button
-            [disabled]="loginForm.invalid"
-            type="submit"
-            class="btn btn-primary btn-block mb-4">Sign In</button>
+            @if (errorMessage()) {
+              <div class="alert alert-danger py-2">{{ errorMessage() }}</div>
+            }
+
+            <button
+              [disabled]="loginForm.invalid"
+              type="submit"
+              class="btn btn-primary w-100 mb-4">Accedi</button>
+
+            <div class="text-center">
+              Non hai un account? <a routerLink="/register">Registrati</a>
+            </div>
+          </form>
         </div>
-        <div class="text-center">
-          Non hai un account? <a routerLink="/register">Registrati</a>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
-
 </div>

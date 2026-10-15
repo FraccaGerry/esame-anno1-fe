@@ -1,6 +1,6 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Le mie classi</h2>
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Le mie classi</h2>
     @if (isTeacher()) {
       <button class="btn btn-primary" (click)="openCreate()">+ Nuova classe</button>
     }
@@ -15,10 +15,15 @@
           <h5 class="mb-1">{{ classroom.name }}</h5>
           <small class="text-muted">Docente: {{ classroom.createdBy.fullName }}</small>
         </div>
-        <span class="badge bg-secondary rounded-pill">{{ classroom.studentsCount }} studenti</span>
+        <div class="d-flex align-items-center gap-3">
+          <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis">
+            {{ classroom.studentsCount }} {{ classroom.studentsCount === 1 ? 'studente' : 'studenti' }}
+          </span>
+          <span class="text-muted fs-4 lh-1">›</span>
+        </div>
       </a>
     } @empty {
-      <div class="text-muted">Nessuna classe.</div>
+      <div class="text-center text-muted py-5">Nessuna classe.</div>
     }
   </div>
 </div>

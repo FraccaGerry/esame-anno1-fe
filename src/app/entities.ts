@@ -17,3 +17,9 @@ export interface Assignment {
   createdAt: string;
   createdBy: User;
 }
+
+export interface StudentCompletion {
+  student: User;
+  completed: boolean;
+  completedAt: string | null;
+}
